@@ -1,0 +1,36 @@
+{
+  "name": "still-journal",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A local personal diary",
+  "author": "Still Journal",
+  "main": "desktop/main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "web": "node server.cjs",
+    "check": "node --check app.js && node --check server.cjs && node --check desktop/main.cjs && node --check desktop/window.cjs && node --check desktop/test.cjs && node --check desktop/run-tests.cjs",
+    "test:desktop": "node desktop/run-tests.cjs",
+    "dist": "electron-builder --win portable --x64"
+  },
+  "devDependencies": {
+    "electron": "44.5.1",
+    "electron-builder": "26.15.3"
+  },
+  "build": {
+    "appId": "com.still.journal",
+    "productName": "Still",
+    "asar": true,
+    "electronLanguages": ["en-US"],
+    "directories": { "output": "dist" },
+    "files": [
+      "index.html", "styles.css", "app.js",
+      "desktop/main.cjs", "desktop/window.cjs", "desktop/icon.png", "package.json"
+    ],
+    "win": {
+      "target": [{ "target": "portable", "arch": ["x64"] }],
+      "icon": "desktop/icon.ico",
+      "artifactName": "Still.exe"
+    },
+    "portable": { "artifactName": "Still.exe" }
+  }
+}
